@@ -1,7 +1,7 @@
 ---
 title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
+output: html_document
 date: "December 10, 2017"
-output:  ioslides_presentation
 ---
 
 # {.tabset .tabset-pills} 
@@ -253,6 +253,7 @@ summary(reg)
 #hbdata <- read_csv(gzfile(filename)) 
 
 hbdata<-read.csv("C:/Users/Kay/Dropbox/BST-260 project/preg data.csv", header=TRUE)
+#hbdata<-read.csv("C:/Users/Kay/Dropbox/BST-260 project/STAR/preg data.csv", header=TRUE)
 sedata<-hbdata%>%select(country, year, survey, house, cluster,dhsid, Anemia.level,hb,anemic, During.pregancy..given.or.bought.iron.tablets.syrup, Wealth.index, Total.children.ever.born, Current.age...respondent, Age.5.year.groups, Type.of.place.of.residence, Highest.educational.level, Source.of.drinking.water, Age.at.1st.birth...18..18.25...25, Type.of.toilet.facility, Number.of.living.children,   Hemoglobin.level.adjusted.by.altitude..g.dl...1.decimal., Number.of.living.children, Body.mass.index.for.respondent, Sample.weight)
 
 
@@ -465,3 +466,83 @@ suppressMessages(kable(part,
 summary(regmom)
 kable(partd)
 ```
+
+## Project Summary
+
+__Overview and Motivation__
+
+The functioning of the human body depends on many physiological mechanisms. One of the most important of these involves the transfer of oxygen from the atmosphere to body tissues. This is where the red blood cells and the hemoglobin which they contain become very important as they play this pivotal role. Anemia is a condition in which an individual has lower hemoglobin levels than expected for age, sex and altitude.
+
+Anemia remains a major contributor to the global burden of disease with a prevalence of 32.9% as at 2010 and resulting in 68.4 million years lived with disability (YLD)^(1)^. Sub-Saharan Africa has been shown to have the highest prevalence, with children under 5 years (pre-school children) and pregnant women being more commonly affected, thus making anemia in this region a major public health problem. Among pregnant women, anemia leads to reduced physical functioning, and substantially increases the risk of maternal and perinatal mortality, preterm births and low birthweights^(2, 3)^. Among children, anemia is associated with increased risk of mortality and poor cognitive development^(2, 3)^. The major causes of anemia in this population include iron deficiency, malaria, HIV, hook worm infestation. 
+
+We leveraged the nationally-representative Demographic and Health Surveys (DHS) conducted in many countries across the world, to examine the prevalence of anemia in sub-Saharan Africa, as well as determine the factors that predict anemia in children under the age of 5 years (pre-school children).  
+
+Our goals included:
+
+* A spatial description of the average hemoglobin concentration in pre-school children across various countries in Sub-Saharan Africa
+* The time varying trend in average hemoglobin concentration across various countries in the region between the years 2000 and 2016.
+* An assessment of the most important factors predicting anemia in this age group in Sub-Saharan Africa.
+
+__What inspired the project__
+
+Every member of the STAR project team has had experience working as doctors in Sub-Saharan Africa and witnessed firt-hand, the debilitating effect of anemia in both pre-school children and pregnant women. This real-life experience, along with studies done by the [American Society of Hematology](http://www.bloodjournal.org/content/123/5/611?sso-checked=true) inspired us to examine the trend in the burden of anemia in these vulnerable groups over the last 15 years. This trend gives us an insight into the effectiveness of various programs that have been established to reduce this burden as well as give an idea of the current situation and the way forward.  
+
+__Initial Questions__
+
+Our initial question was to find the prevalence of anemia across the various countries in the region and varying trend in time between years 2000 – 2016. During this period, several efforts were made to control some of the major causes of anemia. These include: the Roll Back Malaria program  which had intensified efforts to reduce the incidence of malaria in the region and  increased deworming for these vulnerable groups.  In addition, there was increased uptake of Highly Active Anteretroviral Therapy (HAART) for HIV. Hence, we sought to know if the [reduced prevalence of malaria](https://ourworldindata.org/malaria/#malaria-prevalence-historically) will be mirrored by an improvement in average hemoglobin concentration in these vulnerable groups in the various countries making up the region. As we progressed with our analysis, we became more conscious of other environmental factors such as political instability, civil unrest as well as epidemics.
+
+__Data__
+
+The data for this study was obtained from the Demographic and Health Surveys (DHS). This consisted of nationally representative household-level surveys that provide data for a wide range of monitoring and impact evaluation in the areas of population, health, and nutrition. In these surveys, anemia was measured using capillary hemoglobin. We obtained access to the country datasets from the DHS Program. Unique IDs were created to represent each country, survey, cluster, house and the individual. The relevant variables were identified and the rest of the data from each country was deleted. Data from individuals without hemoglobin or anemia information was also deleted. The country datasets were merged, and variables renamed and categorized as appropriate.  
+
+__Exploratory Analysis__
+
+We visualized the averge prevalence of anemia in pre-school children and in pregnant women across various countries over over the period of interest (2000-2016) using bar charts to provide an understanding of the burden of disease as well as make comparison across countries. We also employed bar charts to visual the change in prevalence of anemaia in these groups in th various countries over the years.
+
+
+In addition, box plots were also used to show the time-varying changes in average hemoglobin levels for pre-school children across the different countries in the region. We also used a scatter plot smoothing line to reveal the mean hemoglobin level change over the years among pre-school children in the whole of Sub-Saharan Africa, regardless of the individual countries. 
+
+
+
+Finally, to further enhance our description and make it easier to relate with, we utilized maps to show the spatial distribution of hemoglobin across the various countries as well as the changes in 5-year time increments between 2000 and 2016
+
+
+
+To predict the determinants of hemoglobin concertation among both pre-school children and pregnant women, we utilized multilevel mixed effects models which account for the clustering of these surveys by country and by year. We fit the model using various variables we found to be important predictors as well as adjusting for potential confounders. To account for clustering, we assigned each observation in the dataset a cluster number that was based on the country and the year the survey was carried out. We also included the effect of the weight of the surveys in our models.
+
+__Regression Models__
+
+Variables considered to be important predictors of mean hemoglobin concentration in children include wealth index (an indicator for socio-economic status), the use of insecticide treated mosquito nets, the number of living children in the household, and the number of children under 5 years of age in the household. The model inlcuded age to adjust for potential confounding.
+
+
+
+
+
+Variables considered to important predictors of mean hemoglobin concentration in pregnant women included: wealth index (an indicator for socio-economic status), current age, age at the time of first pregnancy, highest level of education, parity, iron suppelmentation durin pregnancy.
+
+
+
+__Final Analysis__
+
+We discovered a wide variation in average hemoglobin concentration in the study population across the various countries we included in the study. While countries like Namibia, Zimbabawe and Madagascard had relavtively good avergae hemoglobin concentration in children, countries like Mali, Burkina Faso and Sierra Leone had very poor average hemoglobin concentration levels in the same time period. Factors such as poor economy, poor healthcare access and civil unrest were noticed to cause a relatively lower level of hemoglobin in such countries compared to their counterparts. This is evidenced in Niger which has a low GDP and [Mali](https://www.spring-nutrition.org/publications/series/national-anemia-profiles/mali) in which some measures put in place to imporve the burden of anemia have not witnessed significant uptake over the years under study, and thus did not have a significant improvement in mean hemoglobin concentration in these susceptible groups. The impact of civil unrest is prominent in Liberia in which had a relatively lower burden of anemia in children in the early 2000s but a significantly higher burden in 2011 -2016. This unfortunate trend can be attibuted to the civil unrest the country experienced as well as the burden on the healthcare system in the face of the Ebola epidemic in 2014.
+
+Overall, we observed a significant increase in the average hemoglobin concentration in the study population over the 16 years under study. This improvement may be attributed to: 
+
+* Effectiveness of measures for malaria control such as the use of insecticide treated nets, Artemisinin-based Combination Therapy for malaria and indoor residual spraying with insecticide.
+
+* Increased uptake of anteretroviral treatment and thus improved health for people living with HIV and reduction in the mother to child transmission of HIV.
+
+* Increased awereness of the need for deworming children regularly, and hence a reduction in hookworm infestation.
+
+* Increased awareness and uptake of family planning methods by women of reproductive age group in this population, resulting in increased spacing of children and overall reduction in the birth rate.
+
+* Efforts at reducing hunger and emporwering women made through partnerships aimed at achieveing the Millenium Develpment Goals, and currently, the Sustainably Developement Goals.
+
+
+
+
+(1)	Anemia: a comprehensive global estimate; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
+(2)	Balarajan Y, Ramakrishnan U, Ozaltin E, Shankar AH, Subramanian SV. Anaemia in low-income and middle-income countries. Lancet 2011;378:2123-35.
+(3)	Menon K, Ferguson E, Thomson C, Gray A, Zodpey S, Saraf A, Das P, Skeaff S. Effects of anemia at different stages of gestation on infant outcomes. Nutrition 2016;32:61-5.
+
+
