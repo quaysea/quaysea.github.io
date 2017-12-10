@@ -1,5 +1,5 @@
 ---
-title: ###"Spatial and Temporal Analysis of Anemia in the Sub-Saharan African Region (STAR)"
+title: "Spatial and Temporal Analysis of Anemia in the Sub-Saharan African Region (STAR)"
 output: html_document
 ---
 
