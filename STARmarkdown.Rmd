@@ -1,0 +1,44 @@
+---
+title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
+output: html_document
+---
+
+•	Overview and Motivation: Provide an overview of the project goals and the motivation for it. Consider that this will be read by people who did not see your project proposal.
+•	Related Work: Anything that inspired you, such as a paper, a web site, or something we discussed in class.
+•	Initial Questions: What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
+•	Data: Source, scraping method, cleanup, etc.
+•	Exploratory Analysis: What visualizations did you use to look at your data in different ways? What are the different statistical methods you considered? Justify the decisions you made, and show any major changes to your ideas. How did you reach these conclusions?
+•	Final Analysis: What did you learn about the data? How did you answer the questions? How can you justify your answers?
+
+
+Overview and Motivation
+
+The functioning of the human body depends on many physiological mechanisms. One of the most important of these involves the transfer of oxygen from the atmosphere to body tissues. This is where the red blood cells and the hemoglobin which they contain become very important as they play this pivotal role. Anemia is a condition in which an individual has lower hemoglobin levels than expected for age, sex and altitude.
+Anemia remains a major contributor to the global burden of disease with a global prevalence of 32.9% as at 2010 and resulting in 68.4 million years lived with disability (YLD) (1). Sub-Saharan Africa has been shown to have the highest prevalence, with children under 5 years and pregnant women being the worst hit, thus making anemia in this region a major public health problem. The major causes of anemia in this population include iron deficiency, malaria, HIV, hook worm infestation. Considering this situation, we sought to examine the prevalence of anemia as well as determine the factors that predict anemia in children under the age of 5 years (pre-school children).
+Our goals included:
+•	A spatial description of the average hemoglobin concentration in pre-school children across various countries in Sub-Saharan Africa
+•	The time varying trend in average hemoglobin concentration across various countries in the region between the years 2000 and 2016.
+•	An assessment of the most important factors predicting anemia in this age group in Sub-Saharan Africa.
+
+Related Work
+……………….
+
+
+Initial Questions
+Our initial question was to find the average hemoglobin concentration across the various countries in the region and varying trend in time between years 2000 – 2016. During this period, the Roll Back Malaria program had intensified efforts to reduce the incidence of malaria in the region. Hence, we sought to know if the reduced prevalence of malaria will be mirrored by an improvement in average hemoglobin concentration pre-school children in the various countries making up the region. As we progressed with our analysis, we became more conscious of other environmental factors such as political instability, civil unrest as well as epidemics in the prevalence of anemia in this vulnerable group.
+
+Data
+The data for this study was obtained from the Demographic and Health Surveys (DHS). This consisted of nationally representative household-level surveys that provide data for a wide range of monitoring and impact evaluation in the areas of population, health, and nutrition. We obtained access to the dataset from the DHS Program. Unique IDs were created to represent each country, survey, cluster, house and the individual. The relevant variables were identified and the rest of the data from each country was deleted. Data from individuals without hemoglobin or anemia information was also deleted. The country datasets were merged, and variables renamed and categorized as appropriate.
+
+Exploratory Analysis
+We visualized the average hemoglobin concentration in pre-school children across various countries using box plots to provide an understanding of the spread of hemoglobin values as well as make comparison across countries. In addition, box plots were also used to show the time-varying changes in average hemoglobin levels for pre-school children across the countries. In addition, we utilized maps to show the spatial distribution of hemoglobin across the various countries as well as the changes in time. We also used a scatter plot smoothing line to reveal the mean hemoglobin level change among pre-school children in the whole of Sub-Saharan Africa across the years under study.
+We considered building linear regression models to predict the average hemoglobin concertation in the study population. We also thought about using multilevel models and decided to choose the multilevel regression models to account for the clustering of these surveys by country and by year. We fit the model using various variables we found to be important predictors as well as adjusting for potential confounders. 
+To account for clustering, we assigned each observation in the dataset a cluster number that was based on the country and the year the survey was carried out. We also included the effect of the weight of the surveys in our models.
+
+Final Analysis
+We discovered that there is a wide variation in average hemoglobin concentration in the study population across the various countries we included in the study. Factors such as civil unrest were noticed to cause a relatively lower level of hemoglobin in such countries compared to their counterparts. In addition, we noticed a significant increase in the average hemoglobin concentration in the study population over the 16 years under study. 
+This improvement may be attributed to the effectiveness of measures for malaria control such as the use of insecticide treated nets, Artemisinin-based Combination Therapy for malaria and residual spraying with insecticides. Moreso, during this period witnessed significant efforts in eradication of hunger as well as provision of basic access to health facilities due to to the partnerships in place to achieve the Millenium Develpment Goals. The improvement in hemoglobin concentration observed in pre-school children in the region may partly be a result of these efforts
+
+
+
+(1) Anemia: a comprehensive global estimate; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
