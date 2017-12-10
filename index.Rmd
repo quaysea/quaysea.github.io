@@ -8,20 +8,20 @@ output: html_document
 
 ```{r, echo=FALSE}
 suppressMessages(library ("tidyverse"))
-library(ggplot2)
-library(ggmap)
-library(maps)
-library(mapdata)
-library(plotly)
-library(lme4)
-library(broom)
-library(robustlmm)
-library(stringr)
-library(tibble)
-library(lattice)
-library(latticeExtra)
-library(knitr)
-library(kableExtra)
+suppressMessages(library(ggplot2))
+suppressMessages(library(ggmap))
+suppressMessages(library(maps))
+suppressMessages(library(mapdata))
+suppressMessages(library(plotly))
+suppressMessages(library(lme4))
+suppressMessages(library(broom))
+suppressMessages(library(robustlmm))
+suppressMessages(library(stringr))
+suppressMessages(library(tibble))
+suppressMessages(library(lattice))
+suppressMessages(library(latticeExtra))
+suppressMessages(library(knitr))
+suppressMessages(library(kableExtra))
 
 childata<-read.csv("C:/Users/kay/Dropbox/BST-260 project/chl data.csv")
 #child<-read.sas7bdat("C:/Users/Kay/Dropbox/BST-260 project/chl.sas7bdat")
@@ -45,7 +45,7 @@ childouse<-childata%>%
 
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 #Trend of HB over time
 line<-childuse%>%
   filter(!is.na(hb<200&hb>30))%>%
@@ -62,7 +62,7 @@ line
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
 library(ggthemes)
 library(gridExtra)
@@ -106,7 +106,7 @@ childuse%>%
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 #bar chart showing percentage of children anemic by country
 snapshot<-  childuse%>%
   filter(!is.na(hb<200&hb>30))%>%
@@ -133,7 +133,7 @@ bar_percent<-childuse%>%
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
@@ -162,6 +162,8 @@ elbow_room1 <- ca_base +
   geom_text(aes(label=country), size = 3)+
   ditch_the_axes
 
+elbow_room1
+
 ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
 
 
@@ -177,11 +179,13 @@ elbow_room1 <- ca_base +
   theme_classic()+
   ditch_the_axes
 
+elbow_room1
+
 k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
 
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 #Regression
 childregress<-childuse%>%
   mutate(year=as.factor(year), 
