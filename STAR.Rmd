@@ -1,27 +1,36 @@
 ---
-title: "bst 260"
-author: "Kelechi"
-date: "November 17, 2017"
-output: html_document
+title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
+date: "December 10, 2017"
+output:  ioslides_presentation
 ---
 
-
-```{r}
+# {.tabset .tabset-pills} 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 suppressMessages(library ("tidyverse"))
-library(ggplot2)
-library(ggmap)
-library(maps)
-library(mapdata)
-library(plotly)
-library(lme4)
-library(broom)
-library(robustlmm)
-library(stringr)
-library(tibble)
-library(lattice)
-library(latticeExtra)
-library(knitr)
-library(kableExtra)
+suppressMessages(library(ggplot2))
+suppressMessages(library(ggmap))
+suppressMessages(library(maps))
+suppressMessages(library(mapdata))
+suppressMessages(library(plotly))
+suppressMessages(library(lme4))
+suppressMessages(library(broom))
+suppressMessages(library(robustlmm))
+suppressMessages(library(stringr))
+suppressMessages(library(tibble))
+suppressMessages(library(lattice))
+suppressMessages(library(latticeExtra))
+suppressMessages(library(knitr))
+suppressMessages(library(kableExtra))
+suppressMessages(library(ggthemes))
+suppressMessages(library(gridExtra))
+suppressMessages(library(readr))
+
+
+#filename <- tempfile()
+#url <- "https://github.com/quaysea/quaysea.github.io/blob/master/chl%20data.zip"
+#download.file(url, filename, mode="wb")
+#zip.file.extract(filename, zipname = "R.zip", unzip = getOption("unzip"))
+#childata <- read_csv(zip(filename))
 
 childata<-read.csv("C:/Users/kay/Dropbox/BST-260 project/chl data.csv")
 #child<-read.sas7bdat("C:/Users/Kay/Dropbox/BST-260 project/chl.sas7bdat")
@@ -44,10 +53,11 @@ childouse<-childata%>%
 
 
 
-
-```{r}
+## Children Under 5 {.tabset .tabset-pills} 
+### Hemoglobin Trend {.tabset} 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
-line<-childuse%>%
+line<- suppressPackageStartupMessages(childuse%>%
   filter(!is.na(hb<200&hb>30))%>%
   group_by(year)%>%
   summarise(hbs=median(hb, na.rm=TRUE))%>%
@@ -55,17 +65,57 @@ line<-childuse%>%
   ungroup()%>%
   ggplot(aes(year, hbs)) +
  geom_point()+
-  geom_smooth()
+ geom_smooth())
 
 line
 
+
+#bar chart showing percentage of children anemic by country
+snapshot<-  childuse%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity",fill="dark red") +
+  coord_flip() +
+  xlab("")
+snapshot
+
+bar_percent<-childuse%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(myear, country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity",fill="dark red") +
+  coord_flip() +
+  xlab("")+
+  facet_wrap(~myear)+
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
+bar_percent
+
+bar_percent<-childouse%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(myear, country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity",fill="dark red") +
+  coord_flip() +
+  xlab("")+
+  facet_wrap(~myear)+
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
+bar_percent
 ```
 
-
-```{r}
+### Temporal Distribution 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
-library(ggthemes)
-library(gridExtra)
+
 
 childuse%>%
   filter(hb<200&hb>30)%>%
@@ -105,35 +155,8 @@ childuse%>%
 
 ```
 
-
-```{r}
-#bar chart showing percentage of children anemic by country
-snapshot<-  childuse%>%
-  filter(!is.na(hb<200&hb>30))%>%
-  group_by(country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
-  mutate(country = reorder(country, hbs)) %>%
-  ungroup()%>%
-  ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
-  coord_flip() +
-  xlab("")
-
-bar_percent<-childuse%>%
-  filter(!is.na(hb<200&hb>30))%>%
-  group_by(myear, country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
-  mutate(country = reorder(country, hbs)) %>%
-  ungroup()%>%
-  ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
-  coord_flip() +
-  xlab("")+
-  facet_wrap(~myear)
-```
-
-
-```{r}
+### Spatial Distribution
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=8, fig.width=12}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
@@ -159,10 +182,11 @@ elbow_room1 <- ca_base +
       geom_polygon(color = "red", fill = NA)+
   theme_classic()+
   facet_wrap(~myear)+
-  geom_text(aes(label=country), size = 3)+
-  ditch_the_axes
+ ditch_the_axes
 
-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+elbow_room1
+
+
 
 
 neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
@@ -177,11 +201,15 @@ elbow_room1 <- ca_base +
   theme_classic()+
   ditch_the_axes
 
-k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+elbow_room1
+
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = TRUE) %>% config( showlink = FALSE)
 
 ```
 
-```{r}
+
+### Regression Analysis
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Regression
 childregress<-childuse%>%
   mutate(year=as.factor(year), 
@@ -198,17 +226,242 @@ reg<-lmer(hb ~ country + (1 | klust)+age + wealthindex + has_bednet + livechl + 
           weights=weight, 
           REML=FALSE)
 
+
+
 parta=tidy(reg)
   
-partb<-confint(reg, 
+partb<-suppressMessages(confint(reg, 
                parm =c("age","wealthindex","has_bednet","livechl","Number.of.children.5.and.under"), 
-               level=0.95)
+               level=0.95))
 partc<-data.frame(partb, fix.empty.names = TRUE)
 
 
 part<-data.frame(parta[31:35,1:4], partc[,1:2], row.names = NULL)
 
-kable(part, 
-       caption = "Estimates and confidence intervals")%>%kable_styling()
+suppressMessages(kable(part, 
+       caption = "Estimates and confidence intervals")%>%kable_styling())
+
+summary(reg)
 ```
 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+#filename <- tempfile()
+#url <- "https://github.com/quaysea/quaysea.github.io/blob/master/preg%20data.zip"
+#download.file(url, filename, mode="wb")
+#hbdata <- read_csv(gzfile(filename)) 
+
+hbdata<-read.csv("C:/Users/Kay/Dropbox/BST-260 project/preg data.csv", header=TRUE)
+sedata<-hbdata%>%select(country, year, survey, house, cluster,dhsid, Anemia.level,hb,anemic, During.pregancy..given.or.bought.iron.tablets.syrup, Wealth.index, Total.children.ever.born, Current.age...respondent, Age.5.year.groups, Type.of.place.of.residence, Highest.educational.level, Source.of.drinking.water, Age.at.1st.birth...18..18.25...25, Type.of.toilet.facility, Number.of.living.children,   Hemoglobin.level.adjusted.by.altitude..g.dl...1.decimal., Number.of.living.children, Body.mass.index.for.respondent, Sample.weight)
+
+
+usedata<-sedata%>%
+  mutate(myear= case_when(
+    between(year, 2000, 2005) ~ "2000-2005",
+    between(year, 2006, 2010)  ~ "2006-2010",
+    between(year, 2011, 2015) ~ "2011-2015"
+  ))
+
+
+useodata<-sedata%>%
+  mutate(myear= case_when(
+    between(year, 2000, 2010) ~ "2000-2010",
+    between(year, 2011, 2015) ~ "2011-2015"
+  ))
+```
+
+
+
+## Pregnant Women {.tabset .tabset-pills} 
+
+### Hemoglobin Trend {.tabset} 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#Trend of HB over time
+line<- suppressPackageStartupMessages(usedata%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(year)%>%
+  summarise(hbs=median(hb, na.rm=TRUE))%>%
+  #summarise(hbs=sum(hb<100)/length(hb))%>%
+  ungroup()%>%
+  ggplot(aes(year, hbs)) +
+ geom_point()+
+ geom_smooth())
+
+line
+
+#bar chart showing percentage of pregnant women anemic by country
+snapshot<-  usedata%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity",fill="dark red") +
+  coord_flip() +
+  xlab("")
+snapshot
+
+bar_percent<-usedata%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(myear, country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity",fill="dark red") +
+  coord_flip() +
+  xlab("")+
+  facet_wrap(~myear)+
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
+bar_percent
+
+bar_percent<-useodata%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(myear, country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity",fill="dark red") +
+  coord_flip() +
+  xlab("")+
+  facet_wrap(~myear) +
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement="outside")
+
+bar_percent
+```
+
+### Temporal Distribution 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#Box plots of hb values by country in year groups with logarithmic conversion of of the hb
+
+
+usedata%>%
+  filter(hb<200&hb>30)%>%
+  group_by(myear)%>% 
+  mutate(country = reorder(country, hb)) %>%
+  ungroup()%>%
+  ggplot() +
+  geom_boxplot(aes(country, hb,fill = factor(myear))) +
+  scale_y_log10() +
+  coord_flip()+ 
+  theme_fivethirtyeight()+
+  facet_wrap(~myear)
+  
+  useodata%>%
+  filter(hb<200&hb>30)%>%
+  group_by(myear)%>%
+  ungroup()%>%
+  ggplot() +
+  geom_boxplot(aes(country, hb,fill = factor(myear))) +
+  scale_y_log10() + 
+     coord_flip()+ 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  facet_wrap(~myear)
+
+
+
+usedata%>%
+  filter(hb<200&hb>30)%>%
+  group_by(myear)%>%
+  ungroup()%>%
+  ggplot(aes(country, hb))+ 
+  geom_jitter(width = 0.1, alpha = 0.2) +  
+  theme(axis.text.y = element_text(angle = 90, hjust = 1)) +
+    scale_y_log10() +
+  theme_economist_white()+
+    facet_wrap(~myear)
+
+```
+
+### Spatial Distribution
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=8, fig.width=12}
+#Maps showing average hb per country 
+worldMap <- map_data("world") 
+contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
+Africa<-worldMap%>%filter(region%in%contname$country)%>%mutate(country=region)#subsetting the world map to only african countries using the vector of african countries created above
+
+neweruse<-usedata%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+newuse<-right_join(Africa, neweruse, by="country")
+
+ditch_the_axes <- theme(
+  axis.text = element_blank(),
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),
+  panel.border = element_blank(),
+  panel.grid = element_blank(),
+  axis.title = element_blank()
+  )
+ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1) + 
+  geom_polygon(color = "black", fill = "gray")
+
+elbow_room1 <- ca_base + 
+      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
+      geom_polygon(color = "red", fill = NA)+
+  theme_classic()+
+  facet_wrap(~myear)+
+ ditch_the_axes
+
+elbow_room1
+
+
+
+
+neweruse<-usedata%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+newuse<-right_join(Africa, neweruse, by="country")
+ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1) + 
+  geom_polygon(color = "black", fill = "gray")
+
+elbow_room1 <- ca_base + 
+      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
+      geom_polygon(color = "red", fill = NA)+
+  theme_classic()+
+  ditch_the_axes
+
+elbow_room1
+
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = TRUE) %>% config( showlink = FALSE)
+
+```
+
+
+### Regression Analysis
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#Regression
+motherregress<-usedata%>%
+  mutate(year=as.factor(year), 
+         myear=as.factor(myear), 
+         country=as.factor(country),
+         totalwt=sum(as.numeric(Sample.weight), na.rm=TRUE),
+         weight=Sample.weight/totalwt,
+        klust=paste(country, cluster, year, sep=" "),
+        klust=as.factor(klust))
+
+regmom<-lmer(hb~country + (1 | klust)+Wealth.index+Current.age...respondent+Highest.educational.level+Total.children.ever.born+Age.at.1st.birth...18..18.25...25+During.pregancy..given.or.bought.iron.tablets.syrup,
+          data=motherregress, 
+          weights=weight, 
+          REML=FALSE)
+
+
+
+
+partd=tidy(regmom)
+  
+parte<-suppressMessages(confint(regmom, 
+               parm =c("Wealth.index","Current.age...respondent","Highest.educational.level","Total.children.ever.born","Age.at.1st.birth...18..18.25...25","During.pregancy..given.or.bought.iron.tablets.syrup"), 
+               level=0.95))
+partf<-data.frame(parte, fix.empty.names = TRUE)
+
+
+part<-data.frame(partd[28:33,1:4], partf[,1:2], row.names = NULL)
+
+suppressMessages(kable(part, 
+       caption = "Estimates and confidence intervals")%>%kable_styling())
+
+summary(regmom)
+kable(partd)
+```
