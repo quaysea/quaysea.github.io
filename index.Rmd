@@ -4,7 +4,7 @@ date: "December 10, 2017"
 output: html_document
 ---
 
-
+# {.tabset .tabset-pills} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 suppressMessages(library ("tidyverse"))
 suppressMessages(library(ggplot2))
@@ -44,9 +44,9 @@ childouse<-childata%>%
 ```
 
 
-# {.tabset .tabset-pills} 
-# Children Under 5 {.tabset .tabset-pills} 
-## Hemoglobin Trend {.tabset} 
+
+## Children Under 5 {.tabset .tabset-pills} 
+### Hemoglobin Trend {.tabset} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
 line<- suppressPackageStartupMessages(childuse%>%
@@ -102,7 +102,7 @@ bar_percent<-childouse%>%
 bar_percent
 ```
 
-## Temporal Distribution 
+### Temporal Distribution 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
 
@@ -145,7 +145,7 @@ childuse%>%
 
 ```
 
-## Spatial Distribution
+### Spatial Distribution
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
@@ -198,7 +198,7 @@ k<-ggplotly(elbow_room1) %>% config(displayModeBar = TRUE) %>% config( showlink 
 ```
 
 
-## Regression Analysis
+### Regression Analysis
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Regression
 childregress<-childuse%>%
@@ -257,9 +257,10 @@ useodata<-sedata%>%
 ```
 
 
-#{.tabset .tabset-pills} 
-# Pregnant Women {.tabset .tabset-pills} 
-## Hemoglobin Trend {.tabset} 
+
+## Pregnant Women {.tabset .tabset-pills} 
+
+### Hemoglobin Trend {.tabset} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
 line<- suppressPackageStartupMessages(usedata%>%
@@ -314,7 +315,7 @@ bar_percent<-useodata%>%
 bar_percent
 ```
 
-## Temporal Distribution 
+### Temporal Distribution 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
 
@@ -357,7 +358,7 @@ usedata%>%
 
 ```
 
-## Spatial Distribution
+### Spatial Distribution
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
@@ -410,7 +411,7 @@ k<-ggplotly(elbow_room1) %>% config(displayModeBar = TRUE) %>% config( showlink 
 ```
 
 
-## Regression Analysis
+### Regression Analysis
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Regression
 motherregress<-usedata%>%
