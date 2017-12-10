@@ -1,5 +1,5 @@
 ---
-title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
+title: "Spatial and Temporal Analysis of Anemia in the Sub-Saharan African Region (STAR)"
 output: html_document
 ---
 
@@ -33,21 +33,21 @@ __Exploratory Analysis__
 
 We visualized the averge prevalence of anemia in pre-school children and in pregnant women across various countries over over the period of interest (2000-2016) using bar charts to provide an understanding of the burden of disease as well as make comparison across countries. We also employed bar charts to visual the change in prevalence of anemaia in these groups in th various countries over the years.
 
-##insert code for summary bar charts here (figure 2 in our hemoglobin trend for both children and pregnant women, all well titled and labelled)
+####insert code for summary bar charts here (figure 2 in our hemoglobin trend for both children and pregnant women, all well titled and labelled)
 ```{r}
 
 ```
 
 In addition, box plots were also used to show the time-varying changes in average hemoglobin levels for pre-school children across the different countries in the region. We also used a scatter plot smoothing line to reveal the mean hemoglobin level change over the years among pre-school children in the whole of Sub-Saharan Africa, regardless of the individual countries. 
 
-##insert code for time varying boxplots here (temporal distribution boxplots) as well as code for the smoothing line that shows the general upward trend over time across all the countries (figure 1 of HB trend in our website); all well titled and labelled
+####insert code for time varying boxplots here (temporal distribution boxplots) as well as code for the smoothing line that shows the general upward trend over time across all the countries (figure 1 of HB trend in our website); all well titled and labelled.
 ```{r}
 
 ```
 
-Finally, to further enhance our description and make it easier to relate with, we utilized maps to show the spatial distribution of hemoglobin across the various countries as well as the changes in 5-year time increments between 2000 and 2016
+Finally, to further enhance our description and make it easier to relate with, we utilized maps to show the spatial distribution of hemoglobin across the various countries as well as the changes in 5-year time increments between 2000 and 2016.
 
-##insert code for the maps. the first should be the overall average Hb concentration while the 2nd should be the time varying changes in the HB conc.; all well titled and labelled
+####insert code for the maps. the first should be the overall average Hb concentration while the 2nd should be the time varying changes in the HB conc.; all well titled and labelled
 ```{r}
  
 ```
@@ -58,18 +58,17 @@ __Regression Models__
 
 Variables considered to be important predictors of mean hemoglobin concentration in children include wealth index (an indicator for socio-economic status), the use of insecticide treated mosquito nets, the number of living children in the household, and the number of children under 5 years of age in the household. The model inlcuded age to adjust for potential confounding.
 
-##insert code for regression model for children; with final tidy table showing 
+####insert code for regression model for children; with final tidy table showing 
 ```{r}
 
 ```
 
 Variables considered to important predictors of mean hemoglobin concentration in pregnant women included: wealth index (an indicator for socio-economic status), current age, age at the time of first pregnancy, highest level of education, parity, iron suppelmentation durin pregnancy.
 
-##insert code for regression model for pregnant women, with the final tidy table showing also.
+####insert code for regression model for pregnant women, with the final tidy table showing also.
 ```{r}
 
 ```
-
 
 __Final Analysis__
 
@@ -90,7 +89,15 @@ Overall, we observed a significant increase in the average hemoglobin concentrat
 
 
 
-(1)	Anemia: a comprehensive global estimate; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
+
+
+
+
+
+
+
+
+(1)	Sant-Rayn Pasricha. Anemia: a comprehensive global estimate. Blood 2014 123:611-612; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
 (2)	Balarajan Y, Ramakrishnan U, Ozaltin E, Shankar AH, Subramanian SV. Anaemia in low-income and middle-income countries. Lancet 2011;378:2123-35.
 (3)	Menon K, Ferguson E, Thomson C, Gray A, Zodpey S, Saraf A, Das P, Skeaff S. Effects of anemia at different stages of gestation on infant outcomes. Nutrition 2016;32:61-5.
 
