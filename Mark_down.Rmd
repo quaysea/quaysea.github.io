@@ -1,0 +1,214 @@
+---
+title: "bst 260"
+author: "Kelechi"
+date: "November 17, 2017"
+output: html_document
+---
+
+
+```{r}
+suppressMessages(library ("tidyverse"))
+library(ggplot2)
+library(ggmap)
+library(maps)
+library(mapdata)
+library(plotly)
+library(lme4)
+library(broom)
+library(robustlmm)
+library(stringr)
+library(tibble)
+library(lattice)
+library(latticeExtra)
+library(knitr)
+library(kableExtra)
+
+childata<-read.csv("C:/Users/kay/Dropbox/BST-260 project/chl data.csv")
+#child<-read.sas7bdat("C:/Users/Kay/Dropbox/BST-260 project/chl.sas7bdat")
+
+#grouping survey years in 3 groups and in 2 groups
+childuse<-childata%>%
+  mutate(myear= case_when(
+    between(year, 2000, 2005) ~ "2000-2005",
+    between(year, 2006, 2010)  ~ "2006-2010",
+    between(year, 2011, 2016) ~ "2011-2016"
+  ))
+
+childouse<-childata%>%
+  mutate(myear= case_when(
+    between(year, 2000, 2010) ~ "2000-2010",
+    between(year, 2011, 2016) ~ "2011-2016"
+  ))
+
+```
+
+
+
+
+```{r}
+#Trend of HB over time
+line<-childuse%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(year)%>%
+  summarise(hbs=median(hb, na.rm=TRUE))%>%
+  #summarise(hbs=sum(hb<100)/length(hb))%>%
+  ungroup()%>%
+  ggplot(aes(year, hbs)) +
+ geom_point()+
+  geom_smooth()
+
+line
+
+```
+
+
+```{r}
+#Box plots of hb values by country in year groups with logarithmic conversion of of the hb
+library(ggthemes)
+library(gridExtra)
+
+childuse%>%
+  filter(hb<200&hb>30)%>%
+  group_by(myear)%>% 
+  mutate(country = reorder(country, hb)) %>%
+  ungroup()%>%
+  ggplot() +
+  geom_boxplot(aes(country, hb,fill = factor(myear))) +
+  scale_y_log10() +
+  coord_flip()+ 
+  theme_fivethirtyeight()+
+  facet_wrap(~myear)
+  
+  childouse%>%
+  filter(hb<200&hb>30)%>%
+  group_by(myear)%>%
+  ungroup()%>%
+  ggplot() +
+  geom_boxplot(aes(country, hb,fill = factor(myear))) +
+  scale_y_log10() + 
+     coord_flip()+ 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  facet_wrap(~myear)
+
+
+
+childuse%>%
+  filter(hb<200&hb>30)%>%
+  group_by(myear)%>%
+  ungroup()%>%
+  ggplot(aes(country, hb))+ 
+  geom_jitter(width = 0.1, alpha = 0.2) +  
+  theme(axis.text.y = element_text(angle = 90, hjust = 1)) +
+    scale_y_log10() +
+  theme_economist_white()+
+    facet_wrap(~myear)
+
+```
+
+
+```{r}
+#bar chart showing percentage of children anemic by country
+snapshot<-  childuse%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity") +
+  coord_flip() +
+  xlab("")
+
+bar_percent<-childuse%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(myear, country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity") +
+  coord_flip() +
+  xlab("")+
+  facet_wrap(~myear)
+```
+
+
+```{r}
+#Maps showing average hb per country 
+worldMap <- map_data("world") 
+contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
+Africa<-worldMap%>%filter(region%in%contname$country)%>%mutate(country=region)#subsetting the world map to only african countries using the vector of african countries created above
+
+neweruse<-childuse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+newuse<-right_join(Africa, neweruse, by="country")
+
+ditch_the_axes <- theme(
+  axis.text = element_blank(),
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),
+  panel.border = element_blank(),
+  panel.grid = element_blank(),
+  axis.title = element_blank()
+  )
+ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1) + 
+  geom_polygon(color = "black", fill = "gray")
+
+elbow_room1 <- ca_base + 
+      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
+      geom_polygon(color = "red", fill = NA)+
+  theme_classic()+
+  facet_wrap(~myear)+
+  geom_text(aes(label=country), size = 3)+
+  ditch_the_axes
+
+ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+
+
+neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+newuse<-right_join(Africa, neweruse, by="country")
+ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1) + 
+  geom_polygon(color = "black", fill = "gray")
+
+elbow_room1 <- ca_base + 
+      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
+      geom_polygon(color = "red", fill = NA)+
+  theme_classic()+
+  ditch_the_axes
+
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+
+```
+
+```{r}
+#Regression
+childregress<-childuse%>%
+  mutate(year=as.factor(year), 
+         myear=as.factor(myear), 
+         country=as.factor(country),
+         totalwt=sum(as.numeric(svyweight), na.rm=TRUE),
+         weight=svyweight/totalwt,
+        klust=paste(country, cluster, year, sep=" "),
+        klust=as.factor(klust))
+
+
+reg<-lmer(hb ~ country + (1 | klust)+age + wealthindex + has_bednet + livechl + Number.of.children.5.and.under, 
+          data=childregress, 
+          weights=weight, 
+          REML=FALSE)
+
+parta=tidy(reg)
+  
+partb<-confint(reg, 
+               parm =c("age","wealthindex","has_bednet","livechl","Number.of.children.5.and.under"), 
+               level=0.95)
+partc<-data.frame(partb, fix.empty.names = TRUE)
+
+
+part<-data.frame(parta[31:35,1:4], partc[,1:2], row.names = NULL)
+
+kable(part, 
+       caption = "Estimates and confidence intervals")%>%kable_styling()
+```
+
