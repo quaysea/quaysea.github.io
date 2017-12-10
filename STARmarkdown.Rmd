@@ -3,7 +3,7 @@ title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Regio
 output: html_document
 ---
 
-•	•	Overview and Motivation: Provide an overview of the project goals and the motivation for it. Consider that this will be read by people who did not see your project proposal.
+•	Overview and Motivation: Provide an overview of the project goals and the motivation for it. Consider that this will be read by people who did not see your project proposal.
 •	Related Work: Anything that inspired you, such as a paper, a web site, or something we discussed in class.
 •	Initial Questions: What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
 •	Data: Source, scraping method, cleanup, etc.
