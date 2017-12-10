@@ -4,6 +4,7 @@ output: html_document
 ---
 
 __Overview and Motivation__
+
 The functioning of the human body depends on many physiological mechanisms. One of the most important of these involves the transfer of oxygen from the atmosphere to body tissues. This is where the red blood cells and the hemoglobin which they contain become very important as they play this pivotal role. Anemia is a condition in which an individual has lower hemoglobin levels than expected for age, sex and altitude.
 
 Anemia remains a major contributor to the global burden of disease with a prevalence of 32.9% as at 2010 and resulting in 68.4 million years lived with disability (YLD)^(1)^. Sub-Saharan Africa has been shown to have the highest prevalence, with children under 5 years (pre-school children) and pregnant women being more commonly affected, thus making anemia in this region a major public health problem. Among pregnant women, anemia leads to reduced physical functioning, and substantially increases the risk of maternal and perinatal mortality, preterm births and low birthweights^(2, 3)^. Among children, anemia is associated with increased risk of mortality and poor cognitive development^(2, 3)^. The major causes of anemia in this population include iron deficiency, malaria, HIV, hook worm infestation. 
@@ -11,9 +12,10 @@ Anemia remains a major contributor to the global burden of disease with a preval
 We leveraged the nationally-representative Demographic and Health Surveys (DHS) conducted in many countries across the world, to examine the prevalence of anemia in sub-Saharan Africa, as well as determine the factors that predict anemia in children under the age of 5 years (pre-school children).  
 
 Our goals included:
-*A spatial description of the average hemoglobin concentration in pre-school children across various countries in Sub-Saharan Africa
-*The time varying trend in average hemoglobin concentration across various countries in the region between the years 2000 and 2016.
-*An assessment of the most important factors predicting anemia in this age group in Sub-Saharan Africa.
+
+* A spatial description of the average hemoglobin concentration in pre-school children across various countries in Sub-Saharan Africa
+* The time varying trend in average hemoglobin concentration across various countries in the region between the years 2000 and 2016.
+* An assessment of the most important factors predicting anemia in this age group in Sub-Saharan Africa.
 
 __What inspired the project__
 
@@ -77,13 +79,13 @@ Overall, we observed a significant increase in the average hemoglobin concentrat
 
 * Effectiveness of measures for malaria control such as the use of insecticide treated nets, Artemisinin-based Combination Therapy for malaria and indoor residual spraying with insecticide.
 
-*increased uptake of anteretroviral treatment and thus improved health for people living with HIV and reduction in the mother to child transmission of HIV.
+* Increased uptake of anteretroviral treatment and thus improved health for people living with HIV and reduction in the mother to child transmission of HIV.
 
-*Increased awereness of the need for deworming children regularly, and hence a reduction in hookworm infestation.
+* Increased awereness of the need for deworming children regularly, and hence a reduction in hookworm infestation.
 
-*Increased awareness and uptake of family planning methods by women of reproductive age group in this population, resulting in increased spacing of children and overall reduction in the birth rate.
+* Increased awareness and uptake of family planning methods by women of reproductive age group in this population, resulting in increased spacing of children and overall reduction in the birth rate.
 
-*Efforts at reducing hunger and emporwering women made through partnerships aimed at achieveing the Millenium Develpment Goals, and currently, the Sustainably Developement Goals.
+* Efforts at reducing hunger and emporwering women made through partnerships aimed at achieveing the Millenium Develpment Goals, and currently, the Sustainably Developement Goals.
 
 
 
