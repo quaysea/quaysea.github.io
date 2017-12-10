@@ -232,7 +232,7 @@ suppressMessages(kable(part,
        caption = "Estimates and confidence intervals")%>%kable_styling())
 ```
 
-#Pregnant Women
+#Pregnant Women {.tabset} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 hbdata<-read.csv("C:/Users/Kay/Dropbox/BST-260 project/preg data.csv", header=TRUE)
