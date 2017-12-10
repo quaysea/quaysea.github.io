@@ -1,12 +1,11 @@
 ---
-title: "bst 260"
-author: "Kelechi"
-date: "November 17, 2017"
+title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
+date: "December 10, 2017"
 output: html_document
 ---
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 suppressMessages(library ("tidyverse"))
 suppressMessages(library(ggplot2))
 suppressMessages(library(ggmap))
@@ -22,6 +21,8 @@ suppressMessages(library(lattice))
 suppressMessages(library(latticeExtra))
 suppressMessages(library(knitr))
 suppressMessages(library(kableExtra))
+suppressMessages(library(ggthemes))
+suppressMessages(library(gridExtra))
 
 childata<-read.csv("C:/Users/kay/Dropbox/BST-260 project/chl data.csv")
 #child<-read.sas7bdat("C:/Users/Kay/Dropbox/BST-260 project/chl.sas7bdat")
@@ -47,7 +48,7 @@ childouse<-childata%>%
 
 ```{r, echo=FALSE, warning=FALSE}
 #Trend of HB over time
-line<-childuse%>%
+line<- suppressPackageStartupMessages(childuse%>%
   filter(!is.na(hb<200&hb>30))%>%
   group_by(year)%>%
   summarise(hbs=median(hb, na.rm=TRUE))%>%
@@ -55,7 +56,7 @@ line<-childuse%>%
   ungroup()%>%
   ggplot(aes(year, hbs)) +
  geom_point()+
-  geom_smooth()
+ geom_smooth())
 
 line
 
@@ -64,8 +65,7 @@ line
 
 ```{r, echo=FALSE, warning=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
-library(ggthemes)
-library(gridExtra)
+
 
 childuse%>%
   filter(hb<200&hb>30)%>%
@@ -118,6 +118,7 @@ snapshot<-  childuse%>%
  geom_bar(stat="identity") +
   coord_flip() +
   xlab("")
+snapshot
 
 bar_percent<-childuse%>%
   filter(!is.na(hb<200&hb>30))%>%
@@ -130,6 +131,20 @@ bar_percent<-childuse%>%
   coord_flip() +
   xlab("")+
   facet_wrap(~myear)
+bar_percent
+
+bar_percent<-childouse%>%
+  filter(!is.na(hb<200&hb>30))%>%
+  group_by(myear, country)%>%
+  summarise(hbs=sum(hb<100)/length(hb))%>%
+  mutate(country = reorder(country, hbs)) %>%
+  ungroup()%>%
+  ggplot(aes(country, hbs*100)) +
+ geom_bar(stat="identity") +
+  coord_flip() +
+  xlab("")+
+  facet_wrap(~myear)
+bar_percent
 ```
 
 
@@ -159,12 +174,11 @@ elbow_room1 <- ca_base +
       geom_polygon(color = "red", fill = NA)+
   theme_classic()+
   facet_wrap(~myear)+
-  geom_text(aes(label=country), size = 3)+
-  ditch_the_axes
+ ditch_the_axes
 
 elbow_room1
 
-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+
 
 
 neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
@@ -181,7 +195,7 @@ elbow_room1 <- ca_base +
 
 elbow_room1
 
-k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = TRUE) %>% config( showlink = FALSE)
 
 ```
 
@@ -202,17 +216,19 @@ reg<-lmer(hb ~ country + (1 | klust)+age + wealthindex + has_bednet + livechl + 
           weights=weight, 
           REML=FALSE)
 
+summary(reg)
+
 parta=tidy(reg)
   
-partb<-confint(reg, 
+partb<-suppressMessages(confint(reg, 
                parm =c("age","wealthindex","has_bednet","livechl","Number.of.children.5.and.under"), 
-               level=0.95)
+               level=0.95))
 partc<-data.frame(partb, fix.empty.names = TRUE)
 
 
 part<-data.frame(parta[31:35,1:4], partc[,1:2], row.names = NULL)
 
-kable(part, 
-       caption = "Estimates and confidence intervals")%>%kable_styling()
+suppressMessages(kable(part, 
+       caption = "Estimates and confidence intervals")%>%kable_styling())
 ```
 
