@@ -70,7 +70,7 @@ snapshot<-  childuse%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
+ geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
   xlab("")
 snapshot
@@ -82,10 +82,11 @@ bar_percent<-childuse%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
+ geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
   xlab("")+
-  facet_wrap(~myear)
+  facet_wrap(~myear)+
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
 bar_percent
 
 bar_percent<-childouse%>%
@@ -95,10 +96,11 @@ bar_percent<-childouse%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
+ geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
   xlab("")+
-  facet_wrap(~myear)
+  facet_wrap(~myear)+
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
 bar_percent
 ```
 
@@ -146,7 +148,7 @@ childuse%>%
 ```
 
 ### Spatial Distribution
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=8, fig.width=12}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
@@ -283,7 +285,7 @@ snapshot<-  usedata%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
+ geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
   xlab("")
 snapshot
@@ -295,10 +297,11 @@ bar_percent<-usedata%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
+ geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
   xlab("")+
-  facet_wrap(~myear)
+  facet_wrap(~myear)+
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
 bar_percent
 
 bar_percent<-useodata%>%
@@ -308,10 +311,12 @@ bar_percent<-useodata%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity") +
+ geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
   xlab("")+
-  facet_wrap(~myear)
+  facet_wrap(~myear) +
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement="outside")
+
 bar_percent
 ```
 
@@ -359,7 +364,7 @@ usedata%>%
 ```
 
 ### Spatial Distribution
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=8, fig.width=12}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
