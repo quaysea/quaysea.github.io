@@ -44,8 +44,8 @@ childouse<-childata%>%
 ```
 
 
-# {.tabset .tabset-pills}
-#Children Under 5 {.tabset} 
+
+#Children Under 5 {.tabset .tabset-pills} 
 ## Hemoglobin Trend {.tabset} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
@@ -216,7 +216,7 @@ reg<-lmer(hb ~ country + (1 | klust)+age + wealthindex + has_bednet + livechl + 
           weights=weight, 
           REML=FALSE)
 
-summary(reg)
+
 
 parta=tidy(reg)
   
@@ -230,9 +230,11 @@ part<-data.frame(parta[31:35,1:4], partc[,1:2], row.names = NULL)
 
 suppressMessages(kable(part, 
        caption = "Estimates and confidence intervals")%>%kable_styling())
+
+summary(reg)
 ```
 
-#Pregnant Women {.tabset} 
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 hbdata<-read.csv("C:/Users/Kay/Dropbox/BST-260 project/preg data.csv", header=TRUE)
@@ -254,7 +256,7 @@ useodata<-sedata%>%
   ))
 ```
 
-
+#Pregnant Women
 ## Hemoglobin Trend {.tabset} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
@@ -269,31 +271,6 @@ line<- suppressPackageStartupMessages(usedata%>%
  geom_smooth())
 
 line
-```
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-  usedata%>%
-  filter(hb<200&hb>30)%>%
-  group_by(myear)%>%
-  ungroup()%>%
-  ggplot(aes(country, hb, fill=myear)) +
-  geom_boxplot() +
-  coord_flip() +
-  xlab("")+
-  facet_wrap(~myear)
-  
-  useodata%>%
-  filter(hb<200&hb>30)%>%
-  group_by(myear)%>%
-  ungroup()%>%
-  ggplot(aes(country, hb, fill=myear)) +
-  geom_boxplot() +
-  coord_flip() +
-  xlab("")+
-  facet_wrap(~myear)
-
-
-
 
 #bar chart showing percentage of pregnant women anemic by country
 snapshot<-  usedata%>%
@@ -449,7 +426,7 @@ regmom<-lmer(hb~country + (1 | klust)+Wealth.index+Current.age...respondent+High
           REML=FALSE)
 
 
-summary(regmom)
+
 
 partd=tidy(regmom)
   
@@ -463,4 +440,6 @@ part<-data.frame(partd[28:33,1:4], partf[,1:2], row.names = NULL)
 
 suppressMessages(kable(part, 
        caption = "Estimates and confidence intervals")%>%kable_styling())
+
+summary(regmom)
 ```
