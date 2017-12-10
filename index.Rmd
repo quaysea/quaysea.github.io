@@ -44,8 +44,8 @@ childouse<-childata%>%
 ```
 
 
-
-#Children Under 5 {.tabset .tabset-pills} 
+# {.tabset .tabset-pills} 
+# Children Under 5 {.tabset .tabset-pills} 
 ## Hemoglobin Trend {.tabset} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
@@ -256,7 +256,9 @@ useodata<-sedata%>%
   ))
 ```
 
-#Pregnant Women
+
+#{.tabset .tabset-pills} 
+# Pregnant Women {.tabset .tabset-pills} 
 ## Hemoglobin Trend {.tabset} 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
