@@ -8,11 +8,12 @@ output: html_document
 
 ## Project Summary {.tabset} 
 
+
 __Overview and Motivation__
 
 The functioning of the human body depends on many physiological mechanisms. One of the most important of these involves the transfer of oxygen from the atmosphere to body tissues. This is where the red blood cells and the hemoglobin which they contain become very important as they play this pivotal role. Anemia is a condition in which an individual has lower hemoglobin levels than expected for age, sex and altitude.
 
-Anemia remains a major contributor to the global burden of disease with a prevalence of 32.9% as at 2010 and resulting in 68.4 million years lived with disability (YLD)^(1)^. Sub-Saharan Africa has been shown to have the highest prevalence, with children under 5 years (pre-school children) and pregnant women being more commonly affected, thus making anemia in this region a major public health problem. Among pregnant women, anemia leads to reduced physical functioning, and substantially increases the risk of maternal and perinatal mortality, preterm births and low birthweights^(2, 3)^. Among children, anemia is associated with increased risk of mortality and poor cognitive development^(2, 3)^. The major causes of anemia in this population include iron deficiency, malaria, HIV, hook worm infestation. 
+Anemia remains a major contributor to the global burden of disease with a prevalence of 32.9% as at 2010 and resulting in 68.4 million years lived with disability (YLD).^1^ Sub-Saharan Africa has been shown to have the highest prevalence, with children under 5 years (pre-school children) and pregnant women being more commonly affected, thus making anemia in this region a major public health problem. Among pregnant women, anemia leads to reduced physical functioning, and substantially increases the risk of maternal and perinatal mortality, preterm births and low birthweights.^2,3^ Among children, anemia is associated with increased risk of mortality and poor cognitive development.^2,3^ The major causes of anemia in this population include iron deficiency, malaria, HIV, hook worm infestation. 
 
 We leveraged the nationally-representative Demographic and Health Surveys (DHS) conducted in many countries across the world, to examine the prevalence of anemia in sub-Saharan Africa, as well as determine the factors that predict anemia in children under the age of 5 years (pre-school children).  
 
@@ -24,7 +25,7 @@ Our goals included:
 
 __What inspired the project__
 
-Every member of the STAR project team has had experience working as doctors in Sub-Saharan Africa and witnessed firt-hand, the debilitating effect of anemia in both pre-school children and pregnant women. This real-life experience, along with studies done by the [American Society of Hematology](http://www.bloodjournal.org/content/123/5/611?sso-checked=true) inspired us to examine the trend in the burden of anemia in these vulnerable groups over the last 15 years. This trend gives us an insight into the effectiveness of various programs that have been established to reduce this burden as well as give an idea of the current situation and the way forward.  
+Every member of the STAR project team has had experience working as doctors in Sub-Saharan Africa and witnessed firt-hand, the debilitating effect of anemia in both pre-school children and pregnant women. This real-life experience, along with studies done by S. Pasricha (2014) and publised in the journal of the American Society of Hematology, [Blood](http://www.bloodjournal.org/content/123/5/611?sso-checked=true) inspired us to examine the trend in the burden of anemia in these vulnerable groups over the last 15 years. This trend gives us an insight into the effectiveness of various programs that have been established to reduce this burden as well as give an idea of the current situation and the way forward.  
 
 __Initial Questions__
 
@@ -37,7 +38,6 @@ The data for this study was obtained from the Demographic and Health Surveys (DH
 __Exploratory Analysis__
 
 We visualized the averge prevalence of anemia in pre-school children and in pregnant women across various countries over over the period of interest (2000-2016) using bar charts to provide an understanding of the burden of disease as well as make comparison across countries. We also employed bar charts to visual the change in prevalence of anemaia in these groups in th various countries over the years.
-
 
 In addition, box plots were also used to show the time-varying changes in average hemoglobin levels for pre-school children across the different countries in the region. We also used a scatter plot smoothing line to reveal the mean hemoglobin level change over the years among pre-school children in the whole of Sub-Saharan Africa, regardless of the individual countries. 
 
@@ -63,7 +63,7 @@ Variables considered to important predictors of mean hemoglobin concentration in
 
 __Final Analysis__
 
-We discovered a wide variation in average hemoglobin concentration in the study population across the various countries we included in the study. While countries like Namibia, Zimbabawe and Madagascard had relavtively good avergae hemoglobin concentration in children, countries like Mali, Burkina Faso and Sierra Leone had very poor average hemoglobin concentration levels in the same time period. Factors such as poor economy, poor healthcare access and civil unrest were noticed to cause a relatively lower level of hemoglobin in such countries compared to their counterparts. This is evidenced in Niger which has a low GDP and [Mali](https://www.spring-nutrition.org/publications/series/national-anemia-profiles/mali) in which some measures put in place to imporve the burden of anemia have not witnessed significant uptake over the years under study, and thus did not have a significant improvement in mean hemoglobin concentration in these susceptible groups. The impact of civil unrest is prominent in Liberia in which had a relatively lower burden of anemia in children in the early 2000s but a significantly higher burden in 2011 -2016. This unfortunate trend can be attibuted to the civil unrest the country experienced as well as the burden on the healthcare system in the face of the Ebola epidemic in 2014.
+We discovered a wide variation in average hemoglobin concentration in the study population across the various countries we included in the study. While countries like Namibia, Zimbabawe and Madagascard had relavtively good avergae hemoglobin concentration in children, countries like Mali, Burkina Faso and Sierra Leone had very poor average hemoglobin concentration levels in the same time period. Factors such as poor economy, poor healthcare access and civil unrest were noticed to cause a relatively lower level of hemoglobin in such countries compared to their counterparts. This is evidenced in Niger which has a low GDP and Mali, in which some measures put in place to imporve the burden of anemia [have not witnessed significant uptake](https://www.spring-nutrition.org/publications/series/national-anemia-profiles/mali) over the years under study, and thus did not have a significant improvement in mean hemoglobin concentration in these susceptible groups. The impact of civil unrest is prominent in Liberia in which had a relatively lower burden of anemia in children in the early 2000s but a significantly higher burden in 2011 - 2016. This unfortunate trend can be attibuted to the civil unrest the country experienced as well as the burden on the healthcare system in the face of the Ebola epidemic in 2014.
 
 Overall, we observed a significant increase in the average hemoglobin concentration in the study population over the 16 years under study. This improvement may be attributed to: 
 
@@ -75,12 +75,15 @@ Overall, we observed a significant increase in the average hemoglobin concentrat
 
 * Increased awareness and uptake of family planning methods by women of reproductive age group in this population, resulting in increased spacing of children and overall reduction in the birth rate.
 
-* Efforts at reducing hunger and emporwering women made through partnerships aimed at achieveing the Millenium Develpment Goals, and currently, the Sustainably Developement Goals.
+* Efforts at reducing hunger, reducing child and maternal mortality and emporwering women made through partnerships aimed at achieveing the [Millenium Develpment Goals](http://www.un.org/millenniumgoals/), and currently, the [Sustainably Developement Goals](http://www.un.org/sustainabledevelopment/sustainable-development-goals/).
 
+__Limitations__
+
+Our study was limited by the fact that the DHS surveys which provided our data was not done in some countries earlier than 2005, hence that results in some missing data for those countries in that time period. In addition, we did not consider survey weights in estimation of prevalence of anemia and mean concentrations of hemoglobin, though this may have some influence on those values.
 
 __References__
 
-(1)	Anemia: a comprehensive global estimate; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
+(1)	Sant-Rayn Pasricha. Anemia: a comprehensive global estimate. Blood 2014 123:611-612; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
 (2)	Balarajan Y, Ramakrishnan U, Ozaltin E, Shankar AH, Subramanian SV. Anaemia in low-income and middle-income countries. Lancet 2011;378:2123-35.
 (3)	Menon K, Ferguson E, Thomson C, Gray A, Zodpey S, Saraf A, Das P, Skeaff S. Effects of anemia at different stages of gestation on infant outcomes. Nutrition 2016;32:61-5.
 
@@ -131,7 +134,7 @@ childouse<-childata%>%
 
 
 ## Children Under 5 {.tabset .tabset-pills} 
-### Hemoglobin Trend {.tabset} 
+### Hemoglobin Trend 
 #### Aggregated Average Hemoglobin Levels Across Sub-Saharan Africa over Time
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
@@ -146,7 +149,6 @@ line<- suppressPackageStartupMessages(childuse%>%
  geom_smooth())+
   ylab("Average Hemoglobin in g/l")+
   xlab("Year")
-  ggtitle("")
 
 line
 ```
@@ -165,8 +167,8 @@ snapshot<-  childuse%>%
   ggplot(aes(country, hbs*100)) +
  geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
-  xlab("Percentage of children with anemia")+
-  ylab("Countries")
+  ylab("Percentage of children with anemia")+
+  xlab("Countries")
 snapshot
 ```
 
@@ -183,14 +185,14 @@ bar_percent<-childouse%>%
   ggplot(aes(country, hbs*100)) +
  geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
-  xlab("Percentage of children with anemia")+
-  ylab("Countries")+
+  ylab("Percentage of children with anemia")+
+  xlab("Countries")+
   facet_wrap(~myear)+
   theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
 bar_percent
 ```
 
-### Temporal Distribution {.tabset}
+### Temporal Distribution
 #### 1. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries before and after 2010
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
@@ -206,7 +208,9 @@ childouse%>%
   scale_y_log10() +
   coord_flip()+ 
   theme_fivethirtyeight()+
-  facet_wrap(~myear)
+  ylab("Average Hemoglobin in g/l")+
+  facet_wrap(~myear)+
+  scale_fill_discrete(name="Year Groups", labels=c("2000-2010", "2011-2016"))
 ```
 
 #### 2. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries in three time groups
@@ -220,18 +224,27 @@ childouse%>%
   scale_y_log10() + 
      coord_flip()+ 
     theme_fivethirtyeight()+
-  facet_wrap(~myear)
+  ylab("Average Hemoglobin in g/l")+
+  facet_wrap(~myear)+
+  scale_fill_discrete(name="Year Groups", labels=c("2000-2005", "2006-2010", "2011-2016"))
 
 ```
 
 ### Spatial Distribution {.tabset}
 #### Map visualising the Aggregate Average Hemoglobin Concentration for Sub-Saharan African Countries
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=16, fig.width=12}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
 Africa<-worldMap%>%filter(region%in%contname$country)%>%mutate(country=region)#subsetting the world map to only african countries using the vector of african countries created above
-
+ditch_the_axes <- theme(
+  axis.text = element_blank(),
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),
+  panel.border = element_blank(),
+  panel.grid = element_blank(),
+  axis.title = element_blank()
+  )
 
 neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
@@ -243,6 +256,7 @@ ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)
 elbow_room1 <- ca_base + 
       geom_polygon(data = newuse, aes(fill = hbs, text= paste("country:", country))) +
       geom_polygon(color = "black", fill = NA)+
+      ditch_the_axes+
        theme_classic()
   
 
@@ -253,18 +267,11 @@ k
 
 
 #### Maps Showing Changes over time for Average Hemoglobin Concentration for Sub-Saharan African Countries
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=16, fig.width=12}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
 neweruse<-childuse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 
-ditch_the_axes <- theme(
-  axis.text = element_blank(),
-  axis.line = element_blank(),
-  axis.ticks = element_blank(),
-  panel.border = element_blank(),
-  panel.grid = element_blank(),
-  axis.title = element_blank()
-  )
+
 ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
   coord_fixed(1) + 
   geom_polygon(color = "black", fill = "gray")
@@ -273,6 +280,7 @@ elbow_room1 <- ca_base +
   geom_polygon(data = newuse, aes(fill = hbs, text= paste("country:", country))) +
       geom_polygon(color = "black", fill = NA)+
        theme_classic()+
+  ditch_the_axes+
   facet_wrap(~myear)
 
 
@@ -283,6 +291,7 @@ k
 
 
 ### Regression Analysis
+#### 1. Table Showing Regression Estimates and Confidence Intervals
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Regression
 childregress<-childuse%>%
@@ -311,10 +320,14 @@ partc<-data.frame(partb, fix.empty.names = TRUE)
 
 
 part<-data.frame(parta[31:35,1:4], partc[,1:2], row.names = NULL)
+colnames(part)=c("Variable", "Estimate", "Standard Error", "Statistic", "CI-2.5", "CI-97.5")
 
 suppressMessages(kable(part, 
        caption = "Estimates and confidence intervals")%>%kable_styling())
+```
 
+#### 2. Model Fit
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 summary(reg)
 ```
 
@@ -349,7 +362,8 @@ useodata<-sedata%>%
 
 ## Pregnant Women {.tabset .tabset-pills} 
 
-### Hemoglobin Trend {.tabset} 
+### Hemoglobin Trend 
+#### Aggregated Average Hemoglobin Levels Across Sub-Saharan Africa over Time
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
 line<- suppressPackageStartupMessages(usedata%>%
@@ -360,59 +374,59 @@ line<- suppressPackageStartupMessages(usedata%>%
   ungroup()%>%
   ggplot(aes(year, hbs)) +
  geom_point()+
- geom_smooth())
+ geom_smooth())+
+  ylab("Average Hemoglobin in g/l")+
+  xlab("Year")
 
 line
+```
 
-#bar chart showing percentage of pregnant women anemic by country
+
+
+#### Chart Showing Percentage of Pregnant Women who are Anemic in Descending Order by Country
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#bar chart showing percentage of children anemic by country
 snapshot<-  usedata%>%
   filter(!is.na(hb<200&hb>30))%>%
   group_by(country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
+  summarise(hbs=sum(hb<110)/length(hb))%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
  geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
-  xlab("")
+  ylab("Percentage of children with anemia")+
+  xlab("Countries")
 snapshot
+```
 
-bar_percent<-usedata%>%
-  filter(!is.na(hb<200&hb>30))%>%
-  group_by(myear, country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
-  mutate(country = reorder(country, hbs)) %>%
-  ungroup()%>%
-  ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity",fill="dark red") +
-  coord_flip() +
-  xlab("")+
-  facet_wrap(~myear)+
-  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
-bar_percent
+
+#### Chart Showing Changes in the Percentage of Anemic Pregnant by Country Before and After 2010
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 bar_percent<-useodata%>%
   filter(!is.na(hb<200&hb>30))%>%
   group_by(myear, country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
+  summarise(hbs=sum(hb<110)/length(hb))%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
  geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
-  xlab("")+
-  facet_wrap(~myear) +
-  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement="outside")
-
+  ylab("Percentage of children with anemia")+
+  xlab("Countries")+
+  facet_wrap(~myear)+
+  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
 bar_percent
 ```
 
-### Temporal Distribution 
+### Temporal Distribution
+#### 1. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries before and after 2010
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
 
 
-usedata%>%
+useodata%>%
   filter(hb<200&hb>30)%>%
   group_by(myear)%>% 
   mutate(country = reorder(country, hb)) %>%
@@ -422,9 +436,14 @@ usedata%>%
   scale_y_log10() +
   coord_flip()+ 
   theme_fivethirtyeight()+
-  facet_wrap(~myear)
-  
-  useodata%>%
+  ylab("Average Hemoglobin in g/l")+
+  facet_wrap(~myear)+
+  scale_fill_discrete(name="Year Groups", labels=c("2000-2010", "2011-2016"))
+```
+
+#### 2. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries in three time groups
+```{r, echo=FALSE, warning=FALSE, message=FALSE}  
+  usedata%>%
   filter(hb<200&hb>30)%>%
   group_by(myear)%>%
   ungroup()%>%
@@ -432,33 +451,21 @@ usedata%>%
   geom_boxplot(aes(country, hb,fill = factor(myear))) +
   scale_y_log10() + 
      coord_flip()+ 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-  facet_wrap(~myear)
-
-
-
-usedata%>%
-  filter(hb<200&hb>30)%>%
-  group_by(myear)%>%
-  ungroup()%>%
-  ggplot(aes(country, hb))+ 
-  geom_jitter(width = 0.1, alpha = 0.2) +  
-  theme(axis.text.y = element_text(angle = 90, hjust = 1)) +
-    scale_y_log10() +
-  theme_economist_white()+
-    facet_wrap(~myear)
+    theme_fivethirtyeight()+
+  ylab("Average Hemoglobin in g/l")+
+  facet_wrap(~myear)+
+  scale_fill_discrete(name="Year Groups", labels=c("2000-2005", "2006-2010", "2011-2016"))
 
 ```
 
-### Spatial Distribution
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=8, fig.width=12}
+### Spatial Distribution {.tabset}
+#### Map visualising the Aggregate Average Hemoglobin Concentration for Sub-Saharan African Countries
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
 Africa<-worldMap%>%filter(region%in%contname$country)%>%mutate(country=region)#subsetting the world map to only african countries using the vector of african countries created above
 
-neweruse<-usedata%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
-newuse<-right_join(Africa, neweruse, by="country")
 
 ditch_the_axes <- theme(
   axis.text = element_blank(),
@@ -468,37 +475,49 @@ ditch_the_axes <- theme(
   panel.grid = element_blank(),
   axis.title = element_blank()
   )
-ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
-  coord_fixed(1) + 
-  geom_polygon(color = "black", fill = "gray")
 
-elbow_room1 <- ca_base + 
-      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
-      geom_polygon(color = "red", fill = NA)+
-  theme_classic()+
-  facet_wrap(~myear)+
- ditch_the_axes
-
-elbow_room1
-
-
-
-
-neweruse<-usedata%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
   coord_fixed(1) + 
   geom_polygon(color = "black", fill = "gray")
 
+
 elbow_room1 <- ca_base + 
-      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
-      geom_polygon(color = "red", fill = NA)+
-  theme_classic()+
-  ditch_the_axes
+      geom_polygon(data = newuse, aes(fill = hbs, text= paste("country:", country))) +
+      geom_polygon(color = "black", fill = NA)+
+      ditch_the_axes+
+       theme_classic()
+  
 
-elbow_room1
 
-k<-ggplotly(elbow_room1) %>% config(displayModeBar = TRUE) %>% config( showlink = FALSE)
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+k
+```
+
+
+#### Maps Showing Changes over time for Average Hemoglobin Concentration for Sub-Saharan African Countries
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
+neweruse<-childuse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+newuse<-right_join(Africa, neweruse, by="country")
+
+
+ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1) + 
+  geom_polygon(color = "black", fill = "gray")
+
+elbow_room1 <- ca_base + 
+  geom_polygon(data = newuse, aes(fill = hbs, text= paste("country:", country))) +
+      geom_polygon(color = "black", fill = NA)+
+       theme_classic()+
+  ditch_the_axes+
+  facet_wrap(~myear)
+
+
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+k
+
+
 
 ```
 
@@ -532,10 +551,13 @@ partf<-data.frame(parte, fix.empty.names = TRUE)
 
 
 part<-data.frame(partd[28:33,1:4], partf[,1:2], row.names = NULL)
-
+colnames(part)=c("Variable", "Estimate", "Standard Error", "Statistic", "CI-2.5", "CI-97.5")
 suppressMessages(kable(part, 
        caption = "Estimates and confidence intervals")%>%kable_styling())
-
-summary(regmom)
-kable(partd)
 ```
+
+#### 2. Model Fit
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+summary(regmom)
+```
+
