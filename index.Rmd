@@ -1,6 +1,6 @@
 ---
 title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
-date: "Ajibola, Chiagoziem Obiajunwa, Kelechi Weze"
+date: "Ajibola Abioye, Chiagoziem Obiajunwa, Kelechi Weze"
 output: html_document
 ---
 
@@ -78,7 +78,7 @@ Overall, we observed a significant increase in the average hemoglobin concentrat
 * Efforts at reducing hunger and emporwering women made through partnerships aimed at achieveing the Millenium Develpment Goals, and currently, the Sustainably Developement Goals.
 
 
-
+__References__
 
 (1)	Anemia: a comprehensive global estimate; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
 (2)	Balarajan Y, Ramakrishnan U, Ozaltin E, Shankar AH, Subramanian SV. Anaemia in low-income and middle-income countries. Lancet 2011;378:2123-35.
@@ -132,6 +132,7 @@ childouse<-childata%>%
 
 ## Children Under 5 {.tabset .tabset-pills} 
 ### Hemoglobin Trend {.tabset} 
+#### Aggregated Average Hemoglobin Levels Across Sub-Saharan Africa over Time
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
 line<- suppressPackageStartupMessages(childuse%>%
@@ -143,59 +144,59 @@ line<- suppressPackageStartupMessages(childuse%>%
   ggplot(aes(year, hbs)) +
  geom_point()+
  geom_smooth())+
+  ylab("Average Hemoglobin in g/l")+
+  xlab("Year")
   ggtitle("")
 
 line
+```
 
 
+
+#### Chart Showing Percentage of Children Who are Anemic in Descending Order by Country
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #bar chart showing percentage of children anemic by country
 snapshot<-  childuse%>%
   filter(!is.na(hb<200&hb>30))%>%
   group_by(country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
+  summarise(hbs=sum(hb<110)/length(hb))%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
  geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
-  xlab("")
+  xlab("Percentage of children with anemia")+
+  ylab("Countries")
 snapshot
+```
 
-bar_percent<-childuse%>%
-  filter(!is.na(hb<200&hb>30))%>%
-  group_by(myear, country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
-  mutate(country = reorder(country, hbs)) %>%
-  ungroup()%>%
-  ggplot(aes(country, hbs*100)) +
- geom_bar(stat="identity",fill="dark red") +
-  coord_flip() +
-  xlab("")+
-  facet_wrap(~myear)+
-  theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
-bar_percent
+
+#### Chart Showing Changes in the Percentage of Anemic Children by Country Before and After 2010
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 bar_percent<-childouse%>%
   filter(!is.na(hb<200&hb>30))%>%
   group_by(myear, country)%>%
-  summarise(hbs=sum(hb<100)/length(hb))%>%
+  summarise(hbs=sum(hb<110)/length(hb))%>%
   mutate(country = reorder(country, hbs)) %>%
   ungroup()%>%
   ggplot(aes(country, hbs*100)) +
  geom_bar(stat="identity",fill="dark red") +
   coord_flip() +
-  xlab("")+
+  xlab("Percentage of children with anemia")+
+  ylab("Countries")+
   facet_wrap(~myear)+
   theme(strip.background =element_rect(color="red", fill="sky blue"), strip.placement = "outside")
 bar_percent
 ```
 
-### Temporal Distribution 
+### Temporal Distribution {.tabset}
+#### 1. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries before and after 2010
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
 
 
-childuse%>%
+childouse%>%
   filter(hb<200&hb>30)%>%
   group_by(myear)%>% 
   mutate(country = reorder(country, hb)) %>%
@@ -206,8 +207,11 @@ childuse%>%
   coord_flip()+ 
   theme_fivethirtyeight()+
   facet_wrap(~myear)
-  
-  childouse%>%
+```
+
+#### 2. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries in three time groups
+```{r, echo=FALSE, warning=FALSE, message=FALSE}  
+  childuse%>%
   filter(hb<200&hb>30)%>%
   group_by(myear)%>%
   ungroup()%>%
@@ -215,31 +219,41 @@ childuse%>%
   geom_boxplot(aes(country, hb,fill = factor(myear))) +
   scale_y_log10() + 
      coord_flip()+ 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+    theme_fivethirtyeight()+
   facet_wrap(~myear)
-
-
-
-childuse%>%
-  filter(hb<200&hb>30)%>%
-  group_by(myear)%>%
-  ungroup()%>%
-  ggplot(aes(country, hb))+ 
-  geom_jitter(width = 0.1, alpha = 0.2) +  
-  theme(axis.text.y = element_text(angle = 90, hjust = 1)) +
-    scale_y_log10() +
-  theme_economist_white()+
-    facet_wrap(~myear)
 
 ```
 
-### Spatial Distribution
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=8, fig.width=12}
+### Spatial Distribution {.tabset}
+#### Map visualising the Aggregate Average Hemoglobin Concentration for Sub-Saharan African Countries
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=16, fig.width=12}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
 Africa<-worldMap%>%filter(region%in%contname$country)%>%mutate(country=region)#subsetting the world map to only african countries using the vector of african countries created above
 
+
+neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+newuse<-right_join(Africa, neweruse, by="country")
+ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1) + 
+  geom_polygon(color = "black", fill = "gray")
+
+
+elbow_room1 <- ca_base + 
+      geom_polygon(data = newuse, aes(fill = hbs, text= paste("country:", country))) +
+      geom_polygon(color = "black", fill = NA)+
+       theme_classic()
+  
+
+
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+k
+```
+
+
+#### Maps Showing Changes over time for Average Hemoglobin Concentration for Sub-Saharan African Countries
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=16, fig.width=12}
 neweruse<-childuse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 
@@ -256,32 +270,14 @@ ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)
   geom_polygon(color = "black", fill = "gray")
 
 elbow_room1 <- ca_base + 
-      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
-      geom_polygon(color = "red", fill = NA)+
-  theme_classic()+
-  facet_wrap(~myear)+
- ditch_the_axes
-
-elbow_room1
+  geom_polygon(data = newuse, aes(fill = hbs, text= paste("country:", country))) +
+      geom_polygon(color = "black", fill = NA)+
+       theme_classic()+
+  facet_wrap(~myear)
 
 
-
-
-neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
-newuse<-right_join(Africa, neweruse, by="country")
-ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
-  coord_fixed(1) + 
-  geom_polygon(color = "black", fill = "gray")
-
-elbow_room1 <- ca_base + 
-      geom_polygon(data = newuse, aes(fill = hbs), color = "white") +
-      geom_polygon(color = "red", fill = NA)+
-  theme_classic()+
-  ditch_the_axes
-
-elbow_room1
-
-k<-ggplotly(elbow_room1) %>% config(displayModeBar = TRUE) %>% config( showlink = FALSE)
+k<-ggplotly(elbow_room1) %>% config(displayModeBar = FALSE) %>% config( showlink = FALSE)
+k
 
 ```
 
