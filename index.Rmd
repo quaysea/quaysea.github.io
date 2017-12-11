@@ -134,8 +134,15 @@ childouse<-childata%>%
 
 
 ## Children Under 5 {.tabset .tabset-pills} 
+
 ### Hemoglobin Trend 
+
+Anemia refers to hemoglobin concentrations above 110g/L. Anemia is characterized as mild, if hemoglobin concentration is between 100g/L and <110g/L, moderate is hemoglobin concentration is between <100g/L and 85g/L, and severe if <85g/L. Adverse consequences of anemia are more likely to be seen when hemoglobin concentration is below 100g/L.
+
 #### Aggregated Average Hemoglobin Levels Across Sub-Saharan Africa over Time
+
+We examined the temporal trend of overall mean hemoglobin among children under 5 across 31 sub-Saharan African countries since 2000 to date. The mean hemoglobin concentration before 2005 was predominantly in the moderate anemia range. Although the overall mean in 2016 was still <110g/L, there has been an upward trend in the hemoglobin concentration.
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
 line<- suppressPackageStartupMessages(childuse%>%
@@ -156,6 +163,9 @@ line
 
 
 #### Chart Showing Percentage of Children Who are Anemic in Descending Order by Country
+
+The aggregate prevalence of  childhood anemia by country across all years from 2000 to 2016 varies widely. While more than 70% of pregnant women in Burkina Faso were anemic, the prevalence of anemia in Rwanda and Burundi was only about 20%. The burden of childhood anemia is greatest in West Africa compared to other regions - 13 of the 15 countries with up to 40% prevalence of childhood anemia are in that region. 
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #bar chart showing percentage of children anemic by country
 snapshot<-  childuse%>%
@@ -194,6 +204,9 @@ bar_percent
 
 ### Temporal Distribution
 #### 1. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries before and after 2010
+
+We examined changes in the prevalence of childhood anemia between the first decade of the study (2000 - 2010), and the second decade (2011 - 2016). Not all countries had data for both time periods. Countries that recorded up to 10% reduction in prevalence of anemia include Niger, Benin, Senegal, and Ghana. There was reduction in the prevalence of anemia by smaller orders of magnitude in most countries. The prevalence of anemia however got worse in a few countries include - Guinea, Sierra Leone, Angola, and Liberia.
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
 
@@ -232,6 +245,9 @@ childouse%>%
 
 ### Spatial Distribution {.tabset}
 #### Map visualising the Aggregate Average Hemoglobin Concentration for Sub-Saharan African Countries
+
+
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
@@ -291,6 +307,9 @@ k
 
 
 ### Regression Analysis
+
+We examined the changes in the distribution of hemoglobin concentration by country, and during the past two decades. Overall, the country-level hemoglobin distributions appears to be left-skewed. There were noticeable changes in the median hemoglobin in certain countries - with improvements in Tanzania, Lesotho, and reductions in Liberia.
+
 #### 1. Table Showing Regression Estimates and Confidence Intervals
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Regression
@@ -363,7 +382,13 @@ useodata<-sedata%>%
 ## Pregnant Women {.tabset .tabset-pills} 
 
 ### Hemoglobin Trend 
+
+We examined the temporal trend of overall mean hemoglobin among pregnant women under 5 across 27 sub-Saharan African countries since 2000 to date. The mean hemoglobin concentration before 2005 was predominantly in the moderate anemia range. The overall mean hemoglobin concentration crossed the 110g/L threshold in 2006, and has remained in the non-anemic range since then.
+
 #### Aggregated Average Hemoglobin Levels Across Sub-Saharan Africa over Time
+
+The aggregate prevalence of anemia among pregnant women by country across all years from 2000 to 2016 varies widely. While about 50% of pregnant women in Gambia and Mali were anemic, the prevalence of anemia in Namibia, Rwanda and Burundi was only about 10%. Anemia was generally greater among pregnant women in West Africa - 10 of the 12 countries with an anemia prevalence of up to 30% are located in that sub-region
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Trend of HB over time
 line<- suppressPackageStartupMessages(usedata%>%
@@ -384,6 +409,9 @@ line
 
 
 #### Chart Showing Percentage of Pregnant Women who are Anemic in Descending Order by Country
+
+We examined changes in the prevalence of anemia in pregnancy between the first decade of the study (2000 - 2010), and the second decade (2011 - 2016). Countries that recorded up to 5% reduction in prevalence of anemia include Benin, Guinea, Uganda, Lesotho and Ghana. There was reduction in the prevalence of anemia by smaller orders of magnitude in most countries. The prevalence of anemia however got worse in a few countries include - Guinea, Sierra Leone, Angola, and Liberia
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #bar chart showing percentage of children anemic by country
 snapshot<-  usedata%>%
@@ -421,6 +449,9 @@ bar_percent
 ```
 
 ### Temporal Distribution
+
+Country-level factors that may partly explain the spatial and temporal trends observed include malaria incidence, HIV prevalence, coverage for antiretroviral therapy and national income level. For instance, while the incidence of malaria per 1,000 people in Burkina Faso ranged from 349 to 621 between 2000 and 2016, the incidence in Rwanda and Burundi ranged from 105 to 418 in the same time period. 
+
 #### 1. Temporal Distribution of Average Hemoglobin levels in Subsaharan countries before and after 2010
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Box plots of hb values by country in year groups with logarithmic conversion of of the hb
@@ -523,6 +554,10 @@ k
 
 
 ### Regression Analysis
+
+We examined individual-level factors in multi-level models that accounted for correlated outcomes, we observed that hemoglobin concentrations were lower in younger children, from poorer households, and who did not own bednets to sleep under. Children from households with a greater number of children alive were less likely to be anemic suggesting better living conditions or the resilience of the living children. Children from households with a greater number of children 5 years and under also had lower hemoglobin concentrations, likely reflecting competition for maternal attention and a greater strain on resources. 
+
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Regression
 motherregress<-usedata%>%
