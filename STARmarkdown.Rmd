@@ -19,7 +19,7 @@ Our goals included:
 
 __What inspired the project__
 
-Every member of the STAR project team has had experience working as doctors in Sub-Saharan Africa and witnessed firt-hand, the debilitating effect of anemia in both pre-school children and pregnant women. This real-life experience, along with studies done by the [American Society of Hematology](http://www.bloodjournal.org/content/123/5/611?sso-checked=true) inspired us to examine the trend in the burden of anemia in these vulnerable groups over the last 15 years. This trend gives us an insight into the effectiveness of various programs that have been established to reduce this burden as well as give an idea of the current situation and the way forward.  
+Every member of the STAR project team has had experience working as doctors in Sub-Saharan Africa and witnessed firt-hand, the debilitating effect of anemia in both pre-school children and pregnant women. This real-life experience, along with studies done by S. Pasricha (2014) and publised in the journal of the American Society of Hematology, [Blood](http://www.bloodjournal.org/content/123/5/611?sso-checked=true) inspired us to examine the trend in the burden of anemia in these vulnerable groups over the last 15 years. This trend gives us an insight into the effectiveness of various programs that have been established to reduce this burden as well as give an idea of the current situation and the way forward.  
 
 __Initial Questions__
 
@@ -84,26 +84,13 @@ Overall, we observed a significant increase in the average hemoglobin concentrat
 
 * Increased awareness and uptake of family planning methods by women of reproductive age group in this population, resulting in increased spacing of children and overall reduction in the birth rate.
 
-* Efforts at reducing hunger and emporwering women made through partnerships aimed at achieveing the Millenium Develpment Goals, and currently, the Sustainably Developement Goals.
+* Efforts at reducing hunger, reducing child and maternal mortality and emporwering women made through partnerships aimed at achieveing the [Millenium Develpment Goals](http://www.un.org/millenniumgoals/), and currently, the [Sustainably Developement Goals](http://www.un.org/sustainabledevelopment/sustainable-development-goals/).
 
 __Limitations__
+
 Our study was limited by the fact that the DHS surveys which provided our data was not done in some countries earlier than 2005, hence that results in some missing data for those countries in that time period. In addition, we did not consider survey weights in estimation of prevalence of anemia and mean concentrations of hemoglobin, though this may have some influence on those values.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+__References__
 
 (1)	Sant-Rayn Pasricha. Anemia: a comprehensive global estimate. Blood 2014 123:611-612; http://www.bloodjournal.org/content/123/5/611?sso-checked=true
 (2)	Balarajan Y, Ramakrishnan U, Ozaltin E, Shankar AH, Subramanian SV. Anaemia in low-income and middle-income countries. Lancet 2011;378:2123-35.
