@@ -75,7 +75,7 @@ Overall, we observed a significant increase in the average hemoglobin concentrat
 
 * Increased awareness and uptake of family planning methods by women of reproductive age group in this population, resulting in increased spacing of children and overall reduction in the birth rate.
 
-* Efforts at reducing hunger, reducing child and maternal mortality and emporwering women made through partnerships aimed at achieveing the [Millenium Develpment Goals](http://www.un.org/millenniumgoals/), and currently, the [Sustainably Developement Goals](http://www.un.org/sustainabledevelopment/sustainable-development-goals/).
+* Efforts at reducing hunger, reducing child and maternal mortality and emporwering women made through partnerships aimed at achieveing the [Millenium Develpment Goals](http://www.un.org/millenniumgoals/), and currently, the [Sustainable Developement Goals](http://www.un.org/sustainabledevelopment/sustainable-development-goals/).
 
 __Limitations__
 
@@ -244,11 +244,13 @@ childouse%>%
 ```
 
 ### Spatial Distribution {.tabset}
+We examined the changes in the distribution of hemoglobin concentration by country, and during the past two decades. Overall, the country-level hemoglobin distributions appears to be left-skewed. There were noticeable changes in the median hemoglobin in certain countries - with improvements in Tanzania, Lesotho, and reductions in Liberia.
+
 #### Map visualising the Aggregate Average Hemoglobin Concentration for Sub-Saharan African Countries
 
 
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=9, fig.width=11}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
@@ -262,7 +264,7 @@ ditch_the_axes <- theme(
   axis.title = element_blank()
   )
 
-neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+neweruse<-childouse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
   coord_fixed(1) + 
@@ -283,8 +285,8 @@ k
 
 
 #### Maps Showing Changes over time for Average Hemoglobin Concentration for Sub-Saharan African Countries
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
-neweruse<-childuse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+neweruse<-childouse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 
 
@@ -308,7 +310,10 @@ k
 
 ### Regression Analysis
 
-We examined the changes in the distribution of hemoglobin concentration by country, and during the past two decades. Overall, the country-level hemoglobin distributions appears to be left-skewed. There were noticeable changes in the median hemoglobin in certain countries - with improvements in Tanzania, Lesotho, and reductions in Liberia.
+
+
+We examined individual-level factors in multi-level models that accounted for correlated outcomes, we observed that hemoglobin concentrations were lower in younger children, from poorer households, and who did not own bednets to sleep under. Children from households with a greater number of children alive were less likely to be anemic suggesting better living conditions or the resilience of the living children. Children from households with a greater number of children 5 years and under also had lower hemoglobin concentrations, likely reflecting competition for maternal attention and a greater strain on resources. 
+
 
 #### 1. Table Showing Regression Estimates and Confidence Intervals
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -359,7 +364,7 @@ summary(reg)
 #hbdata <- read_csv(gzfile(filename)) 
 
 hbdata<-read.csv("C:/Users/Kay/Dropbox/BST-260 project/preg data.csv", header=TRUE)
-sedata<-hbdata%>%select(country, year, survey, house, cluster,dhsid, Anemia.level,hb,anemic, During.pregancy..given.or.bought.iron.tablets.syrup, Wealth.index, Total.children.ever.born, Current.age...respondent, Age.5.year.groups, Type.of.place.of.residence, Highest.educational.level, Source.of.drinking.water, Age.at.1st.birth...18..18.25...25, Type.of.toilet.facility, Number.of.living.children,   Hemoglobin.level.adjusted.by.altitude..g.dl...1.decimal., Number.of.living.children, Body.mass.index.for.respondent, Sample.weight)
+sedata<-hbdata%>%select(country, year, survey, house, cluster,dhsid, hb,anemic, During.pregancy..given.or.bought.iron.tablets.syrup, wealthindex, BMI...18.5..18.5....25..25....30...30, age, Type.of.place.of.residence, Highest.educational.level, Source.of.drinking.water, Antenatal.visits.for.pregnancy..0..1.3..4.10...10, Number.of.living.children..0..1.2..3.4...4, svyweight)
 
 
 usedata<-sedata%>%
@@ -491,7 +496,7 @@ useodata%>%
 
 ### Spatial Distribution {.tabset}
 #### Map visualising the Aggregate Average Hemoglobin Concentration for Sub-Saharan African Countries
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=10, fig.width=11}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
@@ -507,7 +512,7 @@ ditch_the_axes <- theme(
   axis.title = element_blank()
   )
 
-neweruse<-childuse%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+neweruse<-useodata%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
   coord_fixed(1) + 
@@ -528,8 +533,8 @@ k
 
 
 #### Maps Showing Changes over time for Average Hemoglobin Concentration for Sub-Saharan African Countries
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=12, fig.width=12}
-neweruse<-childuse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=10, fig.width=11}
+neweruse<-useodata%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 
 
@@ -555,7 +560,6 @@ k
 
 ### Regression Analysis
 
-We examined individual-level factors in multi-level models that accounted for correlated outcomes, we observed that hemoglobin concentrations were lower in younger children, from poorer households, and who did not own bednets to sleep under. Children from households with a greater number of children alive were less likely to be anemic suggesting better living conditions or the resilience of the living children. Children from households with a greater number of children 5 years and under also had lower hemoglobin concentrations, likely reflecting competition for maternal attention and a greater strain on resources. 
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -564,12 +568,12 @@ motherregress<-usedata%>%
   mutate(year=as.factor(year), 
          myear=as.factor(myear), 
          country=as.factor(country),
-         totalwt=sum(as.numeric(Sample.weight), na.rm=TRUE),
-         weight=Sample.weight/totalwt,
+         totalwt=sum(as.numeric(svyweight), na.rm=TRUE),
+         weight=svyweight/totalwt,
         klust=paste(country, cluster, year, sep=" "),
         klust=as.factor(klust))
 
-regmom<-lmer(hb~country + (1 | klust)+Wealth.index+Current.age...respondent+Highest.educational.level+Total.children.ever.born+Age.at.1st.birth...18..18.25...25+During.pregancy..given.or.bought.iron.tablets.syrup,
+regmom<-lmer(hb~country + (1 | klust)+wealthindex+age+Highest.educational.level+BMI...18.5..18.5....25..25....30...30+Antenatal.visits.for.pregnancy..0..1.3..4.10...10+During.pregancy..given.or.bought.iron.tablets.syrup,
           data=motherregress, 
           weights=weight, 
           REML=FALSE)
@@ -580,7 +584,7 @@ regmom<-lmer(hb~country + (1 | klust)+Wealth.index+Current.age...respondent+High
 partd=tidy(regmom)
   
 parte<-suppressMessages(confint(regmom, 
-               parm =c("Wealth.index","Current.age...respondent","Highest.educational.level","Total.children.ever.born","Age.at.1st.birth...18..18.25...25","During.pregancy..given.or.bought.iron.tablets.syrup"), 
+               parm =c("wealthindex","age","Highest.educational.level","BMI...18.5..18.5....25..25....30...30","Antenatal.visits.for.pregnancy..0..1.3..4.10...10","During.pregancy..given.or.bought.iron.tablets.syrup"), 
                level=0.95))
 partf<-data.frame(parte, fix.empty.names = TRUE)
 
