@@ -1,5 +1,5 @@
 ---
-title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
+title: "Spatial and Temporal Analysis of Anemia in the Sub-Saharan African Region (STAR)"
 date: "Ajibola Abioye, Chiagoziem Obiajunwa, Kelechi Weze"
 output: html_document
 ---

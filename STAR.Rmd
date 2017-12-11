@@ -1,6 +1,8 @@
 ---
 title: "Spatial and Temporal Analysis of Anemia in the sub-Saharan African Region (STAR)"
-output: html_document
+output:
+  pdf_document: default
+  beamer_presentation: default
 date: "December 10, 2017"
 ---
 
