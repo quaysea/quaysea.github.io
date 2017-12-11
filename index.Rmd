@@ -37,7 +37,7 @@ The data for this study was obtained from the Demographic and Health Surveys (DH
 
 __Exploratory Analysis__
 
-We visualized the averge prevalence of anemia in pre-school children and in pregnant women across various countries over over the period of interest (2000-2016) using bar charts to provide an understanding of the burden of disease as well as make comparison across countries. We also employed bar charts to visual the change in prevalence of anemaia in these groups in th various countries over the years.
+We visualized the average prevalence of anemia in pre-school children and in pregnant women across various countries over over the period of interest (2000-2016) using bar charts to provide an understanding of the burden of disease as well as make comparison across countries. We also employed bar charts to visualize the change in prevalence of anemia in these groups in th various countries over the years.
 
 In addition, box plots were also used to show the time-varying changes in average hemoglobin levels for pre-school children across the different countries in the region. We also used a scatter plot smoothing line to reveal the mean hemoglobin level change over the years among pre-school children in the whole of Sub-Saharan Africa, regardless of the individual countries. 
 
@@ -63,7 +63,7 @@ Variables considered to important predictors of mean hemoglobin concentration in
 
 __Final Analysis__
 
-We discovered a wide variation in average hemoglobin concentration in the study population across the various countries we included in the study. While countries like Namibia, Zimbabawe and Madagascard had relavtively good avergae hemoglobin concentration in children, countries like Mali, Burkina Faso and Sierra Leone had very poor average hemoglobin concentration levels in the same time period. Factors such as poor economy, poor healthcare access and civil unrest were noticed to cause a relatively lower level of hemoglobin in such countries compared to their counterparts. This is evidenced in Niger which has a low GDP and Mali, in which some measures put in place to imporve the burden of anemia [have not witnessed significant uptake](https://www.spring-nutrition.org/publications/series/national-anemia-profiles/mali) over the years under study, and thus did not have a significant improvement in mean hemoglobin concentration in these susceptible groups. The impact of civil unrest is prominent in Liberia in which had a relatively lower burden of anemia in children in the early 2000s but a significantly higher burden in 2011 - 2016. This unfortunate trend can be attibuted to the civil unrest the country experienced as well as the burden on the healthcare system in the face of the Ebola epidemic in 2014.
+We discovered a wide variation in average hemoglobin concentration in the study population across the various countries we included in the study. While countries like Namibia, Zimbabwe and Madagascar had relatively good avergae hemoglobin concentration in children, countries like Mali, Burkina Faso and Sierra Leone had very poor average hemoglobin concentration levels in the same time period. Factors such as poor economy, poor healthcare access and civil unrest were noticed to cause a relatively lower level of hemoglobin in such countries compared to their counterparts. This is evidenced in Niger which has a low GDP and Mali, in which some measures put in place to improve the burden of anemia [have not witnessed significant uptake](https://www.spring-nutrition.org/publications/series/national-anemia-profiles/mali) over the years under study, and thus did not have a significant improvement in mean hemoglobin concentration in these susceptible groups. The impact of civil unrest is prominent in Liberia in which had a relatively lower burden of anemia in children in the early 2000s but a significantly higher burden in 2011 - 2016. This unfortunate trend can be attibuted to the civil unrest the country experienced as well as the burden on the healthcare system in the face of the Ebola epidemic in 2014.
 
 Overall, we observed a significant increase in the average hemoglobin concentration in the study population over the 16 years under study. This improvement may be attributed to: 
 
@@ -137,7 +137,7 @@ childouse<-childata%>%
 
 ### Hemoglobin Trend 
 
-Anemia refers to hemoglobin concentrations above 110g/L. Anemia is characterized as mild, if hemoglobin concentration is between 100g/L and <110g/L, moderate is hemoglobin concentration is between <100g/L and 85g/L, and severe if <85g/L. Adverse consequences of anemia are more likely to be seen when hemoglobin concentration is below 100g/L.
+Anemia refers to hemoglobin concentrations below 110g/L. Anemia is characterized as mild, if hemoglobin concentration is between 100g/L and <110g/L, moderate is hemoglobin concentration is between <100g/L and 85g/L, and severe if <85g/L. Adverse consequences of anemia are more likely to be seen when hemoglobin concentration is below 100g/L.
 
 #### Aggregated Average Hemoglobin Levels Across Sub-Saharan Africa over Time
 
@@ -286,7 +286,7 @@ k
 
 #### Maps Showing Changes over time for Average Hemoglobin Concentration for Sub-Saharan African Countries
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-neweruse<-childouse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+neweruse<-childuse%>%group_by(country,myear)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 
 
@@ -496,7 +496,7 @@ useodata%>%
 
 ### Spatial Distribution {.tabset}
 #### Map visualising the Aggregate Average Hemoglobin Concentration for Sub-Saharan African Countries
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results="asis", fig.height=10, fig.width=11}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 #Maps showing average hb per country 
 worldMap <- map_data("world") 
 contname<-read.csv("C:/Users/Kay/Dropbox/Surface Desktop/list-african-countries-dependent-territory-286j.csv")#getting country names
@@ -512,7 +512,7 @@ ditch_the_axes <- theme(
   axis.title = element_blank()
   )
 
-neweruse<-useodata%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
+neweruse<-usedata%>%group_by(country)%>%mutate(hb=as.numeric(hb))%>%summarise(hbs=mean(hb, na.rm=TRUE))
 newuse<-right_join(Africa, neweruse, by="country")
 ca_base <- ggplot(data = Africa, mapping = aes(x = long, y = lat, group = group)) + 
   coord_fixed(1) + 
